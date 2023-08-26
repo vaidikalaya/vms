@@ -274,7 +274,7 @@
                             <div class="row g-3">
                                 <div class="col-3">
                                     <label for="class" class="form-label">Class</label>
-                                    <select name="class" id="class"  class="form-select">
+                                    <select wire:model.defer="studentData.previous_qualification.class" id="class"  class="form-select">
                                         <option value="nc">N.C</option>
                                         <option value="kg">K.G</option>
                                         <option value="1st">1st</option>
@@ -292,18 +292,18 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="schoolname" class="form-label">School Name</label>
-                                    <input type="text" name="schoolname" class="form-control">
+                                    <input type="text" wire:model.defer="studentData.previous_qualification.school_name" class="form-control">
                                 </div>
                                 <div class="col-3">
                                     <label for="year" class="form-label">Year</label>
-                                    <select name="year" class="form-select">
+                                    <select wire:model.defer="studentData.previous_qualification.year" class="form-select">
                                         <option value="2023">2023</option>
                                         <option value="2022">2022</option>
                                     </select>
                                 </div>
                                 <div class="col-3">
                                     <label for="status" class="form-label">Status</label>
-                                    <select name="status" class="form-select">
+                                    <select wire:model.defer="studentData.previous_qualification.status" class="form-select">
                                         <option value="pass">Pass</option>
                                         <option value="fail">Fail</option>
                                     </select>

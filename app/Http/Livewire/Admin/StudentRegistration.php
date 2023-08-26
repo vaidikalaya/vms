@@ -6,11 +6,11 @@ class StudentRegistration extends Component
 {
     public $level='1';
     public $levelMapping=[
-        '1'=>['1','2'],
-        '2'=>['1','3'],
-        '3'=>['2','4'],
-        '4'=>['3','5'],
-        '5'=>['4']
+        '1'=>['name'=>'personal','next'=>'2'],
+        '2'=>["name"=>"parent",'pre'=>'1','next'=>'3'],
+        '3'=>["name"=>"personal",'pre'=>'2','next'=>'4'],
+        '4'=>["name"=>"personal",'pre'=>'3','next'=>'5'],
+        '5'=>["name"=>"personal",'pre'=>'4']
     ];
 
     public $studentData1=[
@@ -83,7 +83,7 @@ class StudentRegistration extends Component
                 'pin_code'=>null
             ]
         ],
-        'previous_class'=>[
+        'previous_qualification'=>[
             'class'=>null,
             'school_name'=>null,
             'year'=>null,
@@ -92,11 +92,16 @@ class StudentRegistration extends Component
     ];
 
     public function saveAndNext(){ 
+        dd($this->levelMapping[$this->level]['name']);
         $this->level=$this->levelMapping[$this->level][1];
     }
 
     public function saveAndPrevious(){
         $this->level=$this->levelMapping[$this->level][0];
+    }
+
+    public function finalSubmit(){
+        dd($this->studentData);
     }
 
     public function render()
