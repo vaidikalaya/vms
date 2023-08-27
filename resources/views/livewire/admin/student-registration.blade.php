@@ -4,7 +4,7 @@
             overflow: hidden;
             /*CSS counters to number the steps*/
             counter-reset: step;
-        }
+        } 
 
         #student_registration .progressbar li {
             list-style-type: none;
@@ -80,23 +80,24 @@
                             <div class="row g-3">
                                 <div class="col-4">
                                     <label for="firstname" class="form-label">First Name</label>
-                                    <input type="text" wire:model.defer="studentData.firstname" class="form-control" id="firstname">
+                                    <input type="text" wire:model.defer="studentData.personal.firstname" class="form-control" id="firstname">
                                 </div>
                                 <div class="col-4">
                                     <label for="middlename" class="form-label">Middle Name</label>
-                                    <input type="text" wire:model.defer="studentData.middlename" class="form-control" id="middlename">
+                                    <input type="text" wire:model.defer="studentData.personal.middlename" class="form-control" id="middlename">
                                 </div>
                                 <div class="col-4">
                                     <label for="lastname" class="form-label">Last Name</label>
-                                    <input type="text" wire:model.defer="studentData.lastname" class="form-control" id="lastname">
+                                    <input type="text" wire:model.defer="studentData.personal.lastname" class="form-control" id="lastname">
                                 </div>
                                 <div class="col-6">
                                     <label for="dob" class="form-label">Date of birth</label>
-                                    <input type="date" wire:model.defer="studentData.dob" class="form-control" id="dob">
+                                    <input type="date" wire:model.defer="studentData.personal.dob" class="form-control" id="dob">
                                 </div>
                                 <div class="col-6">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select wire:model.defer="studentData.gender" class="form-control">
+                                    <select wire:model.defer="studentData.personal.gender" class="form-control">
+                                        <option value="">Select Gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
@@ -104,15 +105,15 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" wire:model.defer="studentData.email" class="form-control" id="email">
+                                    <input type="email" wire:model.defer="studentData.personal.email" class="form-control" id="email">
                                 </div>
                                 <div class="col-6">
                                     <label for="phone" class="form-label">Phone</label>
-                                    <input type="text" wire:model.defer="studentData.phone" class="form-control" id="phone">
+                                    <input type="text" wire:model.defer="studentData.personal.phone" class="form-control" id="phone">
                                 </div>
                                 <div class="col-12">
                                     <label for="aadhaar" class="form-label">Aadhaar Number</label>
-                                    <input type="text" wire:model.defer="studentData.aadhaar" class="form-control" id="aadhaar">
+                                    <input type="text" wire:model.defer="studentData.personal.aadhaar" class="form-control" id="aadhaar">
                                 </div>
                                 <div>
                                     <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Next</button>
@@ -130,23 +131,23 @@
                             <div class="row g-3">
                                 <div class="col-6">
                                     <label for="fathername" class="form-label">Father Name</label>
-                                    <input type="text" wire:model.defer="studentData.fathername" class="form-control">
+                                    <input type="text" wire:model.defer="studentData.parent.fathername" class="form-control">
                                 </div>
                                 <div class="col-6">
                                     <label for="mothername" class="form-label">Mother Name</label>
-                                    <input type="text" wire:model.defer="studentData.mothername" class="form-control">
+                                    <input type="text" wire:model.defer="studentData.parent.mothername" class="form-control">
                                 </div>
                                 <div class="col-6">
                                     <label for="fatherphone" class="form-label">Father Phone No</label>
-                                    <input type="text" wire:model.defer="studentData.fatherphone" class="form-control">
+                                    <input type="text" wire:model.defer="studentData.parent.fatherphone" class="form-control">
                                 </div>
                                 <div class="col-6">
                                     <label for="motherphone" class="form-label">Mother Phone No</label>
-                                    <input type="text" wire:model.defer="studentData.motherphone" class="form-control">
+                                    <input type="text" wire:model.defer="studentData.parent.motherphone" class="form-control">
                                 </div>
                                 <div class="col-12">
                                     <label for="fatheroccupation" class="form-label">Father Occupation</label>
-                                    <input type="text" wire:model.defer="studentData.fatheroccupation" class="form-control">
+                                    <input type="text" wire:model.defer="studentData.parent.fatheroccupation" class="form-control">
                                 </div>
                                 <div>
                                     <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Next</button>
@@ -178,41 +179,41 @@
                                 <div class="tab-pane fade show active" id="current-tab-pane">
                                     <div class="row g-3">
                                         <div class="col-4">
-                                            <label for="lastname" class="form-label">State</label>
-                                            <select wire:model.defer="studentData.address.current.state" id="" class="form-control">
+                                            <label class="form-label">State</label>
+                                            <select wire:model.defer="studentData.address.current.state" class="form-control">
                                                 <option value="">Select State</option>
-                                                <option value="">Uttar Pradesh</option>
+                                                <option value="Uttar Pradesh">Uttar Pradesh</option>
                                                 <option value="">Uttarakhand</option>
                                             </select>
                                         </div>
         
                                         <div class="col-4">
-                                            <label for="lastname" class="form-label">District</label>
-                                            <select wire:model.defer="studentData.address.current.district" id="" class="form-control">
+                                            <label class="form-label">District</label>
+                                            <select wire:model.defer="studentData.address.current.district" class="form-control">
                                                 <option value="">Select District</option>
-                                                <option value="">Uttar Pradesh</option>
+                                                <option value="Utar">Uttar Pradesh</option>
                                                 <option value="">Uttarakhand</option>
                                             </select>
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">City</label>
-                                            <input type="text" wire:model.defer="studentData.address.currentlastname.city" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.current.city" class="form-control">
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">Village/Mohalla/Sector</label>
-                                            <input type="text" wire:model.defer="studentData.address.currentlastname.msv" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.current.msv" class="form-control">
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">House Number</label>
-                                            <input type="text" wire:model.defer="studentData.address.currentlastname.house_number" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.current.house_number" class="form-control">
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">Pin Code</label>
-                                            <input type="text" wire:model.defer="studentData.address.currentlastname.pin_code" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.current.pin_code" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -220,7 +221,7 @@
                                     <div class="row g-3">
                                         <div class="col-4">
                                             <label for="lastname" class="form-label">State</label>
-                                            <select name="" id="" class="form-control">
+                                            <select wire:model.defer="studentData.address.permanent.state" class="form-control">
                                                 <option value="">Select State</option>
                                                 <option value="">Uttar Pradesh</option>
                                                 <option value="">Uttarakhand</option>
@@ -228,8 +229,8 @@
                                         </div>
         
                                         <div class="col-4">
-                                            <label for="lastname" class="form-label">District</label>
-                                            <select name="" id="" class="form-control">
+                                            <label class="form-label">District</label>
+                                            <select wire:model.defer="studentData.address.permanent.district" class="form-control">
                                                 <option value="">Select District</option>
                                                 <option value="">Uttar Pradesh</option>
                                                 <option value="">Uttarakhand</option>
@@ -238,22 +239,22 @@
         
                                         <div class="col-4">
                                             <label class="form-label">City</label>
-                                            <input type="text" name="lastname" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.permanent.city" class="form-control">
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">Village/Mohalla/Sector</label>
-                                            <input type="text" name="lastname" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.permanent.msv" class="form-control">
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">House Number</label>
-                                            <input type="text" name="lastname" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.permanent.house_number" class="form-control">
                                         </div>
         
                                         <div class="col-4">
                                             <label class="form-label">Pin Code</label>
-                                            <input type="text" name="lastname" class="form-control">
+                                            <input type="text" wire:model.defer="studentData.address.permanent.pin_code" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -304,6 +305,7 @@
                                 <div class="col-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select wire:model.defer="studentData.previous_qualification.status" class="form-select">
+                                        <option value="">Select Status</option>
                                         <option value="pass">Pass</option>
                                         <option value="fail">Fail</option>
                                     </select>

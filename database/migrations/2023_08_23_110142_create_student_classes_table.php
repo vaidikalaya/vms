@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('student_classes', function (Blueprint $table) {
             $table->integer('student_id');
-            $table->id('class_id');
-            $table->id('section_id')->nullable();
+            $table->integer('class_id');
+            $table->integer('section_id')->nullable();
             $table->enum('status',['current','passed','failed']);
             $table->timestamps();
         });
