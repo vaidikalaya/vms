@@ -1,7 +1,8 @@
 <?php
-namespace App\Http\Livewire\Admin;
+
+namespace App\Livewire\Admin;
+
 use Livewire\Component;
-use App\Services\Students;
 
 class StudentRegistration extends Component
 {
@@ -101,11 +102,10 @@ class StudentRegistration extends Component
     // ];
 
     public function saveAndNext(Students $student){ 
-        //dd($this->studentData);
+        dd($this->studentData);
         $levelName=$this->levelMapping[$this->level]['name'];
         $res=$student->save($levelName,$this->studentData[$levelName]);
         $this->studentData[$levelName]['registration_number']=$res;
-        dd($this->studentData);
         $this->level=$this->levelMapping[$this->level]['next'];
     }
 
