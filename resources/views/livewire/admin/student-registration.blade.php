@@ -80,23 +80,23 @@
                             <div class="row g-3">
                                 <div class="col-4">
                                     <label for="firstname" class="form-label">First Name</label>
-                                    <input type="text" wire:model.defer="studentData.personal.firstname" class="form-control" id="firstname">
+                                    <input type="text" wire:model.defer="studentData.firstname" class="form-control" id="firstname">
                                 </div>
                                 <div class="col-4">
                                     <label for="middlename" class="form-label">Middle Name</label>
-                                    <input type="text" wire:model.defer="studentData.personal.middlename" class="form-control" id="middlename">
+                                    <input type="text" wire:model.defer="studentData.middlename" class="form-control" id="middlename">
                                 </div>
                                 <div class="col-4">
                                     <label for="lastname" class="form-label">Last Name</label>
-                                    <input type="text" wire:model.defer="studentData.personal.lastname" class="form-control" id="lastname">
+                                    <input type="text" wire:model.defer="studentData.lastname" class="form-control" id="lastname">
                                 </div>
                                 <div class="col-6">
                                     <label for="dob" class="form-label">Date of birth</label>
-                                    <input type="date" wire:model.defer="studentData.personal.dob" class="form-control" id="dob">
+                                    <input type="date" wire:model.defer="studentData.dob" class="form-control" id="dob">
                                 </div>
                                 <div class="col-6">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select wire:model.defer="studentData.personal.gender" class="form-control">
+                                    <select wire:model.defer="studentData.gender" class="form-control">
                                         <option value="">Select Gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -105,15 +105,15 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" wire:model.defer="studentData.personal.email" class="form-control" id="email">
+                                    <input type="email" wire:model.defer="studentData.email" class="form-control" id="email">
                                 </div>
                                 <div class="col-6">
                                     <label for="phone" class="form-label">Phone</label>
-                                    <input type="text" wire:model.defer="studentData.personal.phone" class="form-control" id="phone">
+                                    <input type="text" wire:model.defer="studentData.phone" class="form-control" id="phone">
                                 </div>
                                 <div class="col-12">
                                     <label for="aadhaar" class="form-label">Aadhaar Number</label>
-                                    <input type="text" wire:model.defer="studentData.personal.aadhaar" class="form-control" id="aadhaar">
+                                    <input type="text" wire:model.defer="studentData.aadhaar" class="form-control" id="aadhaar">
                                 </div>
                                 <div>
                                     <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Next</button>

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('registration_number');
+            $table->bigInteger('registration_number')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('aadhaar_number');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('photo');
-            $table->string('aadhaar_copy');
-            $table->json('previous_qualification');
-            $table->string('last_marksheet');
-            $table->string('transfer_certificate');
-            $table->date('date_of_join');
+            $table->string('photo')->nullable();
+            $table->string('aadhaar_copy')->nullable();
+            $table->json('previous_qualification')->nullable();
+            $table->string('last_marksheet')->nullable();
+            $table->string('transfer_certificate')->nullable();
+            $table->date('date_of_join')->nullable();
             $table->timestamps();
         });
     }
