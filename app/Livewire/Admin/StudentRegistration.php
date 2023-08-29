@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Livewire\Admin;
-
 use Livewire\Component;
+use App\Services\Students;
 
 class StudentRegistration extends Component
 {
@@ -16,17 +15,15 @@ class StudentRegistration extends Component
     ];
 
     public $studentData=[
-        'personal'=>[
-            'registration_number'=>null,
-            'firstname'=>null,
-            'middlename'=>null,
-            'lastname'=>null,
-            'dob'=>null,
-            'gender'=>null,
-            'email'=>null,
-            'phone'=>null,
-            'aadhaar'=>null,
-        ],
+        'registration_number'=>null,
+        'firstname'=>null,
+        'middlename'=>null,
+        'lastname'=>null,
+        'dob'=>null,
+        'gender'=>null,
+        'email'=>null,
+        'phone'=>null,
+        'aadhaar'=>null,
         'parent'=>[
             'fathername'=>null,
             'mothername'=>null,
@@ -61,51 +58,10 @@ class StudentRegistration extends Component
 
     ];
 
-    // public $studentData=[
-    //     'firstname'=>null,
-    //     'middlename'=>null,
-    //     'lastname'=>null,
-    //     'dob'=>null,
-    //     'gender'=>null,
-    //     'email'=>null,
-    //     'phone'=>null,
-    //     'aadhaar'=>null,
-    //     'fathername'=>null,
-    //     'mothername'=>null,
-    //     'fatherphone'=>null,
-    //     'motherphone'=>null,
-    //     'fatheroccupation'=>null,
-    //     'address'=>[
-    //         'current'=>[
-    //             'state'=>null,
-    //             'district'=>null,
-    //             'city'=>null,
-    //             'msv'=>null,
-    //             'house_number'=>null,
-    //             'pin_code'=>null
-    //         ],
-    //         'permanent'=>[
-    //             'state'=>null,
-    //             'district'=>null,
-    //             'city'=>null,
-    //             'msv'=>null,
-    //             'house_number'=>null,
-    //             'pin_code'=>null
-    //         ]
-    //     ],
-    //     'previous_qualification'=>[
-    //         'class'=>null,
-    //         'school_name'=>null,
-    //         'year'=>null,
-    //         'status'=>null
-    //     ]
-    // ];
-
     public function saveAndNext(Students $student){ 
-        dd($this->studentData);
         $levelName=$this->levelMapping[$this->level]['name'];
-        $res=$student->save($levelName,$this->studentData[$levelName]);
-        $this->studentData[$levelName]['registration_number']=$res;
+        $res=$student->save($levelName,(object)$this->studentData);
+        $this->studentData['registration_number']=$res;
         $this->level=$this->levelMapping[$this->level]['next'];
     }
 

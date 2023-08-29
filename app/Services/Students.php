@@ -8,28 +8,17 @@ class Students
     public function save($url,$data){
         switch($url){
             case "personal":
-                if(Student::where('registration_number',$data['registration_number'])->exists()){
-                    Student('registration_number',$data['registration_number'])->update([
-                        'first_name'=>$data['firstname'],
-                        'middle_name'=>$data['middlename'],
-                        'last_name'=>$data['lastname'],
-                        'dob'=>$data['dob'],
-                        'gender'=>$data['gender'],
-                        'aadhaar_number'=>$data['aadhaar'],
-                        'email'=>$data['email'],
-                        'phone'=>$data['phone'],
-                    ]);
-                }else{
+                if(!$data->registration_number){
                     $res=Student::create([
-                        'first_name'=>$data['firstname'],
-                        'middle_name'=>$data['middlename'],
-                        'last_name'=>$data['lastname'],
-                        'dob'=>$data['dob'],
-                        'gender'=>$data['gender'],
-                        'aadhaar_number'=>$data['aadhaar'],
-                        'email'=>$data['email'],
-                        'phone'=>$data['phone'],
-                    ]);
+                            'first_name'=>$data->firstname,
+                            'middle_name'=>$data->middlename,
+                            'last_name'=>$data->lastname,
+                            'dob'=>$data->dob,
+                            'gender'=>$data->gender,
+                            'aadhaar_number'=>$data->aadhaar,
+                            'email'=>$data->email,
+                            'phone'=>$data->phone,
+                        ]);
                     if($res){
                         $regNumber='1'.Carbon::now()->year.$res->id;
                         Student::where('id',$res->id)->update([
@@ -37,6 +26,19 @@ class Students
                         ]);
                     }
                     return $regNumber;
+                }
+                else{
+                    Student::where('registration_number',$data->registration_number)->update([
+                        'first_name'=>$data->firstname,
+                        'middle_name'=>$data->middlename,
+                        'last_name'=>$data->lastname,
+                        'dob'=>$data->dob,
+                        'gender'=>$data->gender,
+                        'aadhaar_number'=>$data->aadhaar,
+                        'email'=>$data->email,
+                        'phone'=>$data->phone,
+                    ]);
+                    return true;
                 }
                 break;
             case "parent":
