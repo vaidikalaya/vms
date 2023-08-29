@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('father_phone');
             $table->string('mother_phone');
             $table->string('father_occupation');
+            $table->integer('student_id');
             $table->timestamps();
         });
     }

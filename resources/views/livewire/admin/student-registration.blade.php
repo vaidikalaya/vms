@@ -331,11 +331,11 @@
                                         <td class="pt-3">
                                             <label for="uploadPhoto">
                                                 <img src="{{asset('assets/icons/paperclip.svg')}}" class="cursor-pointer" height="20" width="20">
-                                                <input type="file" class="d-none" id="uploadPhoto">
+                                                <input type="file" wire:model='student_photo' class="d-none" id="uploadPhoto">
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles()" type="button">Upload</button>
                                         </td>
                                     </tr>
                                     <tr>

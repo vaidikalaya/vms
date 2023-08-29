@@ -1,11 +1,14 @@
 <?php
 namespace App\Livewire\Admin;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Services\Students;
 
 class StudentRegistration extends Component
 {
-    public $level='1';
+    use WithFileUploads;
+    public $level='5';
+    public $student_photo;
     public $levelMapping=[
         '1'=>['name'=>'personal','next'=>'2'],
         '2'=>["name"=>"parent",'pre'=>'1','next'=>'3'],
@@ -15,7 +18,8 @@ class StudentRegistration extends Component
     ];
 
     public $studentData=[
-        'registration_number'=>null,
+        'id'=>null,
+        'registration_number'=>'123',
         'firstname'=>null,
         'middlename'=>null,
         'lastname'=>null,
@@ -60,13 +64,22 @@ class StudentRegistration extends Component
 
     public function saveAndNext(Students $student){ 
         $levelName=$this->levelMapping[$this->level]['name'];
-        $res=$student->save($levelName,(object)$this->studentData);
-        $this->studentData['registration_number']=$res;
+        $res=$student->save($levelName,json_decode(json_encode($this->studentData)));
+        if($levelName=='personal'){
+            $this->studentData['registration_number']=$res['reg_number'];
+            $this->studentData['id']=$res['student_id'];
+        }
         $this->level=$this->levelMapping[$this->level]['next'];
     }
-
     public function saveAndPrevious(){
         $this->level=$this->levelMapping[$this->level]['pre'];
+    }
+
+    public function uploadFiles(){
+        $regNumber=$this->studentData['registration_number'];
+        $extension=$this->student_photo->getClientOriginalExtension();
+        $file_name=$regNumber.'.'.$extension;
+        $this->student_photo->storeAs('uploads/student_data/photos',$file_name, 'custom_public');
     }
 
     public function finalSubmit(){
