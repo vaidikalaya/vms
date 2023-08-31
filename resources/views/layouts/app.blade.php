@@ -71,7 +71,7 @@
                         <div class="accordion-body pt-0">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link" aria-current="page">Students</a>
+                                    <a href="{{route('students')}}" class="nav-link" aria-current="page">Students</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('student.registration')}}" class="nav-link">Student Registration</a>
