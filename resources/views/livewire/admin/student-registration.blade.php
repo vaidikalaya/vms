@@ -116,7 +116,7 @@
                                     <input type="text" wire:model.defer="studentData.aadhaar" class="form-control" id="aadhaar">
                                 </div>
                                 <div>
-                                    <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Next</button>
+                                    <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Save & Next</button>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                                     <input type="text" wire:model.defer="studentData.parent.fatheroccupation" class="form-control">
                                 </div>
                                 <div>
-                                    <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Next</button>
+                                    <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Save & Next</button>
                                     <button wire:click="saveAndPrevious()" class="btn btn-primary float-end me-2" type="button">Previous</button>
                                 </div>
                             </div>
@@ -163,7 +163,51 @@
                             <h4 class="fw-bold">Address</h4>
                         </div>
                         <div class="card-body">
-                            <ul class="nav nav-tabs border-0 " id="myTab" role="tablist">
+                            <div class="row g-3">
+                                <div class="col-4">
+                                    <label class="form-label">State</label>
+                                    <select wire:model.defer="studentData.state" class="form-control">
+                                        <option value="">Select State</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="">Uttarakhand</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label">District</label>
+                                    <select wire:model.defer="studentData.district" class="form-control">
+                                        <option value="">Select District</option>
+                                        <option value="Utar">Uttar Pradesh</option>
+                                        <option value="">Uttarakhand</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" wire:model.defer="studentData.city" class="form-control">
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label">Village/Mohalla/Sector</label>
+                                    <input type="text" wire:model.defer="studentData.msv" class="form-control">
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label">House Number</label>
+                                    <input type="text" wire:model.defer="studentData.house_number" class="form-control">
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label">Area/Location</label>
+                                    <input type="text" wire:model.defer="studentData.area_location" class="form-control">
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label">Pin Code</label>
+                                    <input type="text" wire:model.defer="studentData.pin_code" class="form-control">
+                                </div>
+                            </div>
+                            {{-- <ul class="nav nav-tabs border-0 " id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link border-start-0 border-top-0 border-end-0 bg-white text-dark active" id="current-tab" data-bs-toggle="tab" data-bs-target="#current-tab-pane" type="button">
                                         Current Address
@@ -258,9 +302,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mt-3">
-                                <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Next</button>
+                                <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Save & Next</button>
                                 <button wire:click="saveAndPrevious()" class="btn btn-primary float-end me-2" type="button">Previous</button>
                             </div>
                         </div>
@@ -327,51 +371,65 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th class="pt-3">Student Photo</th>
+                                        <th class="pt-3">
+                                            Student Photo 
+                                            <span class="text-secondary" id="photoName"></span>
+                                            @error('documents.photos')<span class="text-danger">{{ $message }}</span>@enderror
+                                        </th>
                                         <td class="pt-3">
                                             <label for="uploadPhoto">
                                                 <img src="{{asset('assets/icons/paperclip.svg')}}" class="cursor-pointer" height="20" width="20">
-                                                <input type="file" wire:model='student_photo' class="d-none" id="uploadPhoto">
+                                                <input type="file" wire:model='documents.photos' class="d-none" id="uploadPhoto" data-target="#photoName">
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click="uploadFiles()" type="button">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('photos')" wire:loading.attr="disabled" type="button">Upload</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="pt-3">Student Aadhaar</th>
+                                        <th class="pt-3">
+                                            Student Aadhaar
+                                            <span class="text-secondary" id="aadhaarName"></span>
+                                            @error('documents.aadhaar')<span class="text-danger">{{ $message }}</span>@enderror
+                                        </th>
                                         <td class="pt-3">
                                             <label for="uploadAadhaar">
                                                 <img src="{{asset('assets/icons/paperclip.svg')}}" class="cursor-pointer" height="20" width="20">
-                                                <input type="file" class="d-none" id="uploadAadhaar">
+                                                <input type="file" wire:model='documents.aadhaar' class="d-none" id="uploadAadhaar" data-target="#aadhaarName">
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('aadhaar')" wire:loading.attr="disabled" type="button">Upload</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="pt-3">Previous Marksheet</th>
+                                        <th class="pt-3">
+                                            Previous Marksheet
+                                            <span class="text-secondary" id="marksheetName"></span>
+                                        </th>
                                         <td class="pt-3">
-                                            <label for="uploadTC">
+                                            <label for="uploadMarksheet">
                                                 <img src="{{asset('assets/icons/paperclip.svg')}}" class="cursor-pointer" height="20" width="20">
-                                                <input type="file" class="d-none" id="uploadTC">
+                                                <input type="file" wire:model='documents.marksheets' class="d-none" id="uploadMarksheet" data-target="#marksheetName">
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('marksheets')" wire:loading.attr="disabled" type="button">Upload</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="pt-3">T.C (Transfer Certificate)</th>
+                                        <th class="pt-3">
+                                            T.C (Transfer Certificate)
+                                            <span class="text-secondary" id="tcName"></span>
+                                        </th>
                                         <td class="pt-3">
                                             <label for="uploadTC">
                                                 <img src="{{asset('assets/icons/paperclip.svg')}}" class="cursor-pointer" height="20" width="20">
-                                                <input type="file" class="d-none" id="uploadTC">
+                                                <input type="file" wire:model='documents.tc' class="d-none" id="uploadTC" data-target="#tcName">
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('tc')" wire:loading.attr="disabled" type="button">Upload</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -386,4 +444,9 @@
             @endswitch
         </form>
     </div>
+    <script>
+        $('input[type=file]').change(function(){
+            $($(this).data("target")).text('( '+this.files.item(0).name+' )')
+        });
+    </script>
 </div>

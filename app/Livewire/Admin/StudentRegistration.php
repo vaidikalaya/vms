@@ -28,30 +28,23 @@ class StudentRegistration extends Component
         'email'=>null,
         'phone'=>null,
         'aadhaar'=>null,
+        'state'=>null,
+        'district'=>null,
+        'city'=>null,
+        'msv'=>null,
+        'house_number'=>null,
+        'area_location'=>null,
+        'pin_code'=>null,
+        'photos'=>null,
+        'aadhaar'=>null,
+        'marksheets'=>null,
+        'tc'=>null,
         'parent'=>[
             'fathername'=>null,
             'mothername'=>null,
             'fatherphone'=>null,
             'motherphone'=>null,
             'fatheroccupation'=>null,
-        ],
-        'address'=>[
-            'current'=>[
-                'state'=>null,
-                'district'=>null,
-                'city'=>null,
-                'msv'=>null,
-                'house_number'=>null,
-                'pin_code'=>null
-            ],
-            'permanent'=>[
-                'state'=>null,
-                'district'=>null,
-                'city'=>null,
-                'msv'=>null,
-                'house_number'=>null,
-                'pin_code'=>null
-            ]
         ],
         'previous_qualification'=>[
             'class'=>null,
@@ -60,6 +53,13 @@ class StudentRegistration extends Component
             'status'=>null
         ]
 
+    ];
+
+    public $documents=[
+        'photos'=>null,
+        'aadhaar'=>null,
+        'marksheets'=>null,
+        'tc'=>null,
     ];
 
     public function saveAndNext(Students $student){ 
@@ -75,11 +75,23 @@ class StudentRegistration extends Component
         $this->level=$this->levelMapping[$this->level]['pre'];
     }
 
-    public function uploadFiles(){
+    public function uploadFiles($url){
+        $this->validate(
+            [
+                'documents.photos' => 'mimes:jpg,png|max:1024',
+                'documents.aadhaar' => 'mimes:pdf|max:1024'
+            ],
+            [
+                'documents.photos.mimes' => 'Only jpg and png allowed',
+                'documents.aadhaar.mimes' => 'Only pdf allowed',
+            ],
+        );
         $regNumber=$this->studentData['registration_number'];
-        $extension=$this->student_photo->getClientOriginalExtension();
-        $file_name=$regNumber.'.'.$extension;
-        $this->student_photo->storeAs('uploads/student_data/photos',$file_name, 'custom_public');
+        $document=$this->documents[$url];
+        $extension=$document->getClientOriginalExtension();
+        $document_name=$regNumber.'.'.$extension;
+        $document->storeAs('uploads/student_data/'.$url,$document_name, 'custom_public');
+        $this->studentData[$url]=$document_name;
     }
 
     public function finalSubmit(){

@@ -56,7 +56,13 @@ class Students
                 break;
             case "address":
                 Student::where('id',$studentData->id)->update([
-                    'address'=>json_encode($studentData->address)
+                    'state'=>$studentData->state,
+                    'district'=>$studentData->district,
+                    'city'=>$studentData->city,
+                    'msv'=>$studentData->msv,
+                    'house_number'=>$studentData->house_number,
+                    'area_location'=>$studentData->area_location,
+                    'pin_code'=>$studentData->pin_code,
                 ]);
                 break;
             case "previous_qualification":

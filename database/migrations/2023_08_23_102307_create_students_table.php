@@ -19,7 +19,13 @@ return new class extends Migration
             $table->string('aadhaar_number');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->json('address')->nullable();
+            $table->string('state')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('msv')->nullable();
+            $table->string('house_number')->nullable();
+            $table->string('area_location')->nullable();
+            $table->string('pin_code')->nullable();
             $table->json('previous_qualification')->nullable();
             $table->string('photo')->nullable();
             $table->string('aadhaar_copy')->nullable();
