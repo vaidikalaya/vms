@@ -111,9 +111,18 @@
                                     <label for="phone" class="form-label">Phone</label>
                                     <input type="text" wire:model.defer="studentData.phone" class="form-control" id="phone">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label for="aadhaar" class="form-label">Aadhaar Number</label>
                                     <input type="text" wire:model.defer="studentData.aadhaar" class="form-control" id="aadhaar">
+                                </div>
+                                <div class="col-6">
+                                    <label for="class" class="form-label">Admission In</label>
+                                    <select wire:model.defer="studentData.class" class="form-control">
+                                        <option value="">Select Class</option>
+                                        @foreach ($classes as $class)
+                                            <option value="{{$class->id}}">{{$class->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div>
                                     <button wire:click="saveAndNext()" class="btn btn-primary float-end" type="button">Save & Next</button>
@@ -484,7 +493,22 @@
     </div>
     <script>
         $('input[type=file]').change(function(){
+            console.log('jk');
             $($(this).data("target")).text('( '+this.files.item(0).name+' )')
         });
+
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('success', () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Student registration successfully done',
+                    showConfirmButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location='/students';
+                    }
+                })
+            })
+        })
     </script>
 </div>

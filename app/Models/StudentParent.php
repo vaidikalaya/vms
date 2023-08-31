@@ -14,6 +14,7 @@ class StudentParent extends Model
         'mother_name',
         'father_phone',
         'mother_phone',
-        'father_occupation'
+        'father_occupation',
+        'student_id'
     ];
 }

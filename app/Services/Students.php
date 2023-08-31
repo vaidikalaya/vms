@@ -18,6 +18,8 @@ class Students
     public function save($url,$studentData){
         switch($url){
             case "personal":
+                $regNumber;
+                $studentId;
                 if(!$studentData->id){
                     $res=Student::create([
                             'first_name'=>$studentData->firstname,
@@ -30,15 +32,15 @@ class Students
                             'phone'=>$studentData->phone,
                         ]);
                     if($res){
+                        $studentId=$res->id;
                         $regNumber='1'.Carbon::now()->year.$res->id;
                         Student::where('id',$res->id)->update([
                             'registration_number'=>$regNumber
                         ]);
                     }
-                    return ['reg_number'=>$regNumber,'student_id'=>$res->id];
                 }
                 else{
-                    Student::where('id',$studentData->id)->update([
+                    $res=Student::where('id',$studentData->id)->update([
                         'first_name'=>$studentData->firstname,
                         'middle_name'=>$studentData->middlename,
                         'last_name'=>$studentData->lastname,
@@ -48,7 +50,19 @@ class Students
                         'email'=>$studentData->email,
                         'phone'=>$studentData->phone,
                     ]);
-                    return true;
+                    $studentId=$studentData->id;
+                    $regNumber=$studentData->registration_number;
+                }
+                $resClass=StudentClass::updateOrCreate(
+                    ['student_id'=>$studentId,'class_id'=>$studentData->class],
+                    [
+                        'student_id'=>$studentId,
+                        'class_id'=>$studentData->class,
+                        'status'=>'current'
+                    ]
+                );
+                if($res && $resClass){
+                    return ['reg_number'=>$regNumber,'student_id'=>$studentId];
                 }
                 break;
             case "parent":

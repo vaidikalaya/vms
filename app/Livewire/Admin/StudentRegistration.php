@@ -2,13 +2,13 @@
 namespace App\Livewire\Admin;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Services\Students;
+use App\Services\{Students,School};
+use App\Models\{Classes};
 
 class StudentRegistration extends Component
 {
     use WithFileUploads;
     public $level='1';
-    public $student_photo;
     public $levelMapping=[
         '1'=>['name'=>'personal','next'=>'2'],
         '2'=>["name"=>"parent",'pre'=>'1','next'=>'3'],
@@ -16,6 +16,7 @@ class StudentRegistration extends Component
         '4'=>["name"=>"previous_qualification",'pre'=>'3','next'=>'5'],
         '5'=>["name"=>"documents",'pre'=>'4']
     ];
+    public $classes;
 
     public $studentData=[
         'id'=>null,
@@ -28,6 +29,7 @@ class StudentRegistration extends Component
         'email'=>null,
         'phone'=>null,
         'aadhaar'=>null,
+        'class'=>null,
         'state'=>null,
         'district'=>null,
         'city'=>null,
@@ -61,6 +63,10 @@ class StudentRegistration extends Component
         'marksheets'=>null,
         'tc'=>null,
     ];
+
+    public function mount(){
+        $this->classes=Classes::get();
+    }
 
     public function saveAndNext(){ 
         $this->saveData();
@@ -123,7 +129,7 @@ class StudentRegistration extends Component
     }
 
     public function finalSubmit(){
-        dd($this->studentData);
+        $this->dispatch('success');
     }
 
     public function render()

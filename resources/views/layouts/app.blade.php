@@ -13,6 +13,9 @@
     <script src="{{asset('assets/js/jquery-3.7.0.min.js')}}"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <!-- Sweetalert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!--Custom CSS-->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
