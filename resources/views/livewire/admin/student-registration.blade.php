@@ -373,7 +373,7 @@
                                     <tr>
                                         <th class="pt-3">
                                             Student Photo 
-                                            <span class="text-secondary" id="photoName"></span>
+                                            <span class="text-secondary" id="photoName" wire:ignore></span><br>
                                             @error('documents.photos')<span class="text-danger">{{ $message }}</span>@enderror
                                         </th>
                                         <td class="pt-3">
@@ -383,29 +383,48 @@
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click="uploadFiles('photos')" wire:loading.attr="disabled" type="button">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('photos')" wire:loading.attr="disabled" type="button">
+                                                Upload
+                                            </button>
                                         </td>
+                                        @if($studentData['photos'])
+                                        <td>
+                                            <a class="btn btn-primary" target="_blank" href="{{asset('uploads/student_data/photos/'.$studentData['photos'])}}">
+                                                View
+                                            </a>
+                                        </td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th class="pt-3">
                                             Student Aadhaar
-                                            <span class="text-secondary" id="aadhaarName"></span>
-                                            @error('documents.aadhaar')<span class="text-danger">{{ $message }}</span>@enderror
+                                            <span class="text-secondary" id="aadhaarName" wire:ignore></span><br>
+                                            @error('documents.aadhaar_copy')<span class="text-danger">{{ $message }}</span>@enderror
                                         </th>
                                         <td class="pt-3">
                                             <label for="uploadAadhaar">
                                                 <img src="{{asset('assets/icons/paperclip.svg')}}" class="cursor-pointer" height="20" width="20">
-                                                <input type="file" wire:model='documents.aadhaar' class="d-none" id="uploadAadhaar" data-target="#aadhaarName">
+                                                <input type="file" wire:model='documents.aadhaar_copy' class="d-none" id="uploadAadhaar" data-target="#aadhaarName">
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click="uploadFiles('aadhaar')" wire:loading.attr="disabled" type="button">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('aadhaar_copy')" wire:loading.attr="disabled" type="button">
+                                                Upload
+                                            </button>
                                         </td>
+                                        @if($studentData['aadhaar_copy'])
+                                        <td>
+                                            <a class="btn btn-primary" target="_blank" href="{{asset('uploads/student_data/aadhaar_copy/'.$studentData['aadhaar_copy'])}}">
+                                                View
+                                            </a>
+                                        </td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th class="pt-3">
                                             Previous Marksheet
-                                            <span class="text-secondary" id="marksheetName"></span>
+                                            <span class="text-secondary" id="marksheetName" wire:ignore></span><br>
+                                            @error('documents.marksheets')<span class="text-danger">{{ $message }}</span>@enderror
                                         </th>
                                         <td class="pt-3">
                                             <label for="uploadMarksheet">
@@ -414,13 +433,23 @@
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click="uploadFiles('marksheets')" wire:loading.attr="disabled" type="button">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('marksheets')" wire:loading.attr="disabled" type="button">
+                                                Upload
+                                            </button>
                                         </td>
+                                        @if($studentData['marksheets'])
+                                        <td>
+                                            <a class="btn btn-primary" target="_blank" href="{{asset('uploads/student_data/marksheets/'.$studentData['marksheets'])}}">
+                                                View
+                                            </a>
+                                        </td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th class="pt-3">
                                             T.C (Transfer Certificate)
-                                            <span class="text-secondary" id="tcName"></span>
+                                            <span class="text-secondary" id="tcName" wire:ignore></span><br>
+                                            @error('documents.tc')<span class="text-danger">{{ $message }}</span>@enderror
                                         </th>
                                         <td class="pt-3">
                                             <label for="uploadTC">
@@ -429,8 +458,17 @@
                                             </label>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click="uploadFiles('tc')" wire:loading.attr="disabled" type="button">Upload</button>
+                                            <button class="btn btn-primary" wire:click="uploadFiles('tc')" wire:loading.attr="disabled" type="button">
+                                                Upload
+                                            </button>
                                         </td>
+                                        @if($studentData['tc'])
+                                        <td>
+                                            <a class="btn btn-primary" target="_blank" href="{{asset('uploads/student_data/tc/'.$studentData['tc'])}}">
+                                                View
+                                            </a>
+                                        </td>
+                                        @endif
                                     </tr>
                                 </tbody>
                             </table>

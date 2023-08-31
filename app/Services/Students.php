@@ -5,6 +5,16 @@ use Carbon\Carbon;
 
 class Students
 {
+
+    public function get($id=null){
+        return Student::leftjoin('student_parents as parents','parents.student_id','students.id')
+               ->select(
+                    'students.*',
+                    'parents.father_name','parents.mother_name','parents.father_phone','parents.mother_phone','father_occupation'
+               )
+               ->get();
+    }
+
     public function save($url,$studentData){
         switch($url){
             case "personal":
@@ -68,6 +78,13 @@ class Students
             case "previous_qualification":
                 Student::where('id',$studentData->id)->update([
                     'previous_qualification'=>json_encode($studentData->previous_qualification)
+                ]);
+            case "documents":
+                Student::where('id',$studentData->id)->update([
+                    'photo'=>$studentData->photos,
+                    'aadhaar_copy'=>$studentData->aadhaar_copy,
+                    'aadhaar_copy'=>$studentData->marksheets,
+                    'transfer_certificate'=>$studentData->tc
                 ]);
                 break;
         }

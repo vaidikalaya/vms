@@ -17,5 +17,6 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 Route::controller(StudentsController::class)->group(function () {
+    Route::get('/students','index')->name('students');
     Route::get('/student/registration','studentRegistrationView')->name('student.registration');
 });
